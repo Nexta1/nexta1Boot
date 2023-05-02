@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * 读取项目相关配置
  *
- * @author valarchie
+ * @author nexta1
  */
 @Component
 @ConfigurationProperties(prefix = "nexta1boot")
