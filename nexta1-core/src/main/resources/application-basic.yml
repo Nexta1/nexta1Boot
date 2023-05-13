@@ -38,3 +38,45 @@ spring:
     restart:
       # 热部署开关  线上记得关闭
       enabled: false
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd HH:mm:ss
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥 TODO 记得更换
+  secret: sdhfkjshBN6rr32df38
+  # 自动刷新token的时间
+  autoRefreshTime: 20
+
+  # PageHelper分页插件
+
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+# MyBatis配置
+mybatis-plus:
+  # 搜索指定包别名
+  typeAliasesPackage: com.nexta1.orm.*
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 加载全局的配置文件
+  configuration:
+    cacheEnabled: true
+    useGeneratedKeys: true
+    defaultExecutorType: SIMPLE
+    logImpl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+logging:
+  level:
+    # 记得配置到包名
+    com.nexta1boot: debug
+    org.springframework: info
+    com.baomidou.mybatisplus: debug
+  pattern:
+    console: "%date %thread %green(%level) [%cyan(%logger{10}):%magenta(%line)] %(%method) | %msg%n"

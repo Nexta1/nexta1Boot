@@ -5,9 +5,11 @@ import cn.hutool.core.util.RandomUtil;
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 
 /**
- * verification code of math Generator
+ * Description:
+ * 生成验证码图片的TextCreator
  *
- * @author valarchie
+ * @author nexta1
+ * @date 2023/5/3 15:23
  */
 public class CaptchaMathTextCreator extends DefaultTextCreator {
 

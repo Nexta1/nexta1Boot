@@ -1,0 +1,47 @@
+package com.nexta1.core.web.domain.login.VO;
+
+
+import com.nexta1.orm.common.enums.DataScopeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.SetUtils;
+
+import java.util.Set;
+
+/**
+ * @author valarchie
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RoleInfoVO {
+
+    public static final RoleInfoVO EMPTY_ROLE = new RoleInfoVO();
+    public static final long ADMIN_ROLE_ID = -1;
+    public static final String ADMIN_ROLE_KEY = "admin";
+    public static final String ALL_PERMISSIONS = "*:*:*";
+
+    public static final Set<String> ADMIN_PERMISSIONS = SetUtils.hashSet(ALL_PERMISSIONS);
+
+
+    public RoleInfoVO(Long roleId, String roleKey, DataScopeEnum dataScope, Set<Long> deptIdSet,
+                      Set<String> menuPermissions, Set<Long> menuIds) {
+        this.roleId = roleId;
+        this.roleKey = roleKey;
+        this.dataScope = dataScope;
+        this.deptIdSet = deptIdSet;
+        this.menuPermissions = menuPermissions != null ? menuPermissions : SetUtils.emptySet();
+        this.menuIds = menuIds != null ? menuIds : SetUtils.emptySet();
+    }
+
+
+    private Long roleId;
+    private String roleName;
+    private DataScopeEnum dataScope;
+    private Set<Long> deptIdSet;
+    private String roleKey;
+    private Set<String> menuPermissions;
+    private Set<Long> menuIds;
+
+}

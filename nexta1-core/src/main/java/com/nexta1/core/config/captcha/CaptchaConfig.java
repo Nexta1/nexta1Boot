@@ -10,9 +10,11 @@ import java.util.Properties;
 import static com.google.code.kaptcha.Constants.*;
 
 /**
+ * Description:
  * 验证码配置
  *
- * @author ruoyi
+ * @author nexta1
+ * @date 2023/5/3 15:22
  */
 @Configuration
 public class CaptchaConfig {
@@ -64,7 +66,7 @@ public class CaptchaConfig {
         // KAPTCHA_SESSION_KEY
         properties.setProperty(KAPTCHA_SESSION_CONFIG_KEY, "kaptchaCodeMath");
         // 验证码文本生成器   需要填   文本生成器类的全限定包名
-        properties.setProperty(KAPTCHA_TEXTPRODUCER_IMPL, "com.agileboot.infrastructure.config.captcha.CaptchaMathTextCreator");
+        properties.setProperty(KAPTCHA_TEXTPRODUCER_IMPL, "com.nexta1.core.config.captcha.CaptchaMathTextCreator");
         // 验证码文本字符间距 默认为2
         properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_SPACE, "3");
         // 验证码文本字符长度 默认为5
