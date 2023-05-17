@@ -1,12 +1,14 @@
 package com.nexta1.domain.system.menu.query;
 
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.nexta1.orm.common.query.AbstractQuery;
 import com.nexta1.orm.system.entity.SysMenuEntity;
 import lombok.Data;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author valarchie
@@ -20,13 +22,15 @@ public class MenuQuery extends AbstractQuery<SysMenuEntity> {
 
 
     @Override
-    public QueryWrapper<SysMenuEntity> toQueryWrapper() {
-        QueryWrapper<SysMenuEntity> queryWrapper = new QueryWrapper<SysMenuEntity>()
-                .like(StrUtil.isNotEmpty(menuName), "menu_name", menuName)
-                .eq(isVisible != null, "is_visible", isVisible)
-                .eq(status != null, "status", status);
+    public LambdaQueryWrapper<SysMenuEntity> toQueryWrapper() {
+        LambdaQueryWrapper<SysMenuEntity> queryWrapper = new LambdaQueryWrapper<SysMenuEntity>()
+                .like(StrUtil.isNotEmpty(menuName), SysMenuEntity::getMenuName, menuName)
+                .eq(isVisible != null, SysMenuEntity::getIsVisible, isVisible)
+                .eq(status != null, SysMenuEntity::getStatus, status);
 
-        queryWrapper.orderBy(true, true, Arrays.asList("parent_id", "order_num"));
+        List<SFunction<SysMenuEntity, ?>> orderByColumns = Arrays.asList(SysMenuEntity::getParentId, SysMenuEntity::getOrderNum);
+        queryWrapper.orderBy(true, true, orderByColumns);
         return queryWrapper;
     }
+
 }

@@ -5,6 +5,7 @@ import com.nexta1.common.exception.ApiException;
 import com.nexta1.common.exception.error.ErrorCode;
 import com.nexta1.orm.common.interfaces.BasicEnum;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -14,34 +15,19 @@ public class BasicEnumUtil {
 
     public static final String UNKNOWN = "未知";
 
-    public static <E extends Enum<E>> E fromValueSafely(Class<E> enumClass, Object value) {
-        E target = null;
+    public static <E extends Enum<E>, V> E fromValueSafely(Class<E> enumClass, V value) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .filter(enumConstant -> Objects.equals(((BasicEnum<?>) enumConstant).getValue(), value))
+                .findFirst()
+                .orElseThrow(() -> new ApiException(ErrorCode.Internal.GET_ENUM_FAILED, enumClass.getSimpleName()));
 
-        for (E enumConstant : enumClass.getEnumConstants()) {
-            BasicEnum<?> basicEnum = (BasicEnum<?>) enumConstant;
-            if (Objects.equals(basicEnum.getValue(), value)) {
-                target = (E) basicEnum;
-            }
-        }
-
-        return target;
     }
 
-    public static <E extends Enum<E>> E fromValue(Class<E> enumClass, Object value) {
-        E target = null;
-
-        for (E enumConstant : enumClass.getEnumConstants()) {
-            BasicEnum basicEnum = (BasicEnum) enumConstant;
-            if (Objects.equals(basicEnum.getValue(), value)) {
-                target = (E) basicEnum;
-            }
-        }
-
-        if (target == null) {
-            throw new ApiException(ErrorCode.Internal.GET_ENUM_FAILED, enumClass.getSimpleName());
-        }
-
-        return target;
+    public static <E extends Enum<E>, V> E fromValue(Class<E> enumClass, V value) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .filter(enumConstant -> Objects.equals(((BasicEnum<?>) enumConstant).getValue(), value))
+                .findFirst()
+                .orElseThrow(() -> new ApiException(ErrorCode.Internal.GET_ENUM_FAILED, enumClass.getSimpleName()));
     }
 
     public static <E extends Enum<E>> String getDescriptionByBool(Class<E> enumClass, Boolean bool) {

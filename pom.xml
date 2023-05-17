@@ -8,7 +8,7 @@
     <artifactId>nexta1-boot</artifactId>
     <version>${revision}</version>
 
-    <name>nexta1boot</name>
+    <name>boot</name>
     <!--    <url>http://www.nexta1.vip</url>-->
     <description>基于 springboot的快速开发系统</description>
 

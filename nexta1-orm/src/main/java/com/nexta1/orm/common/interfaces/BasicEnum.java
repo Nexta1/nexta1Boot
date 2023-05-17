@@ -1,9 +1,11 @@
 package com.nexta1.orm.common.interfaces;
 
 /**
- * @param <T>
- * @author valarchie
- * 普通的枚举 接口
+ * Description:
+ * 枚举接口
+ *
+ * @author nexta1
+ * @date 2023/5/15 22:22
  */
 public interface BasicEnum<T> {
 

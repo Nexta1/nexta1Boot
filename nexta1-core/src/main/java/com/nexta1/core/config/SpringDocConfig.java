@@ -1,6 +1,5 @@
 package com.nexta1.core.config;
 
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
@@ -21,10 +20,10 @@ public class SpringDocConfig {
                 .info(new Info().title("Agileboot后台管理系统")
                         .description("Agileboot API 演示")
                         .version("v1.8.0")
-                        .license(new License().name("MIT 3.0").url("https://github.com/valarchie/AgileBoot-Back-End")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("Agileboot后台管理系统接口文档")
-                        .url("https://juejin.cn/column/7159946528827080734"));
+                        .license(new License().name("MIT 3.0").url("https://github.com/valarchie/AgileBoot-Back-End")));
+//                .externalDocs(new ExternalDocumentation()
+//                        .description("Agileboot后台管理系统接口文档")
+//                        .url("https://juejin.cn/column/7159946528827080734"));
     }
 
 }

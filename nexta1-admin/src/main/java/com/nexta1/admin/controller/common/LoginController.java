@@ -17,6 +17,7 @@ import com.nexta1.domain.system.menu.DTO.RouterDTO;
 import com.nexta1.domain.system.menu.MenuApplicationService;
 import com.nexta1.domain.system.user.dto.UserDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "登录API", description = "登录相关接口")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -76,11 +78,22 @@ public class LoginController {
     @GetMapping("/getLoginUserInfo")
     public ResponseDTO<UserPermissionDTO> getLoginUserInfo() {
         LoginUserDetail loginUser = AuthenticationUtils.getLoginUser();
+
         UserPermissionDTO permissionDTO = new UserPermissionDTO();
+
         permissionDTO.setUser(new UserDTO(CacheCenter.userCache.getObjectById(loginUser.getUserId())));
+
         permissionDTO.setRoleKey(loginUser.getRoleInfo().getRoleKey());
+
         permissionDTO.setPermissions(loginUser.getRoleInfo().getMenuPermissions());
+
         permissionDTO.setDictTypes(MapCache.dictionaryCache());
         return ResponseDTO.ok(permissionDTO);
     }
+
+//    @Operation(summary = "注册接口", description = "暂未实现")
+//    @PostMapping("/register")
+//    public ResponseDTO<Void> register(@RequestBody AddUserCommand command) {
+//        return ResponseDTO.fail(Business.UNSUPPORTED_OPERATION);
+//    }
 }

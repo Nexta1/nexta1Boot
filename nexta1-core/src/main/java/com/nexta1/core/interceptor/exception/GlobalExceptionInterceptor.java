@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * 全局异常处理器
@@ -83,7 +84,7 @@ public class GlobalExceptionInterceptor {
     }
 
     /**
-     * 自定义验证异常
+     * 自定义验证异常 基本类型
      */
     @ExceptionHandler(BindException.class)
     public ResponseDTO<?> handleBindException(BindException e) {
@@ -98,7 +99,7 @@ public class GlobalExceptionInterceptor {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseDTO<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);
-        String message = e.getBindingResult().getFieldError().getDefaultMessage();
+        String message = Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage();
         return ResponseDTO.fail(ErrorCode.Client.COMMON_REQUEST_PARAMETERS_INVALID, message);
     }
 

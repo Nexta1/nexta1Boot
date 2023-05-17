@@ -45,7 +45,7 @@ public class RedisCacheService {
 
         loginUserCache = new RedisCacheDao<>(redisUtil, CacheKeyEnum.LOGIN_USER_KEY);
 
-        userCache = new RedisCacheDao<SysUserEntity>(redisUtil, CacheKeyEnum.USER_ENTITY_KEY) {
+        userCache = new RedisCacheDao<>(redisUtil, CacheKeyEnum.USER_ENTITY_KEY) {
             @Override
             public SysUserEntity getObjectFromDb(Object id) {
                 ISysUserService userService = SpringUtil.getBean(ISysUserService.class);

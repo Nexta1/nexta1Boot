@@ -75,8 +75,7 @@ mybatis-plus:
 logging:
   level:
     # 记得配置到包名
-    com.nexta1boot: debug
+    com.nexta1: debug
     org.springframework: info
-    com.baomidou.mybatisplus: debug
   pattern:
-    console: "%date %thread %green(%level) [%cyan(%logger{10}):%magenta(%line)] %(%method) | %msg%n"
+    console: "%date %thread %green(%level) [%cyan(%logger{10}):%magenta(%line)] %red(%method) | %msg%n"

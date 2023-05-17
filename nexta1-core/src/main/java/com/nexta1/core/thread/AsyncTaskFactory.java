@@ -7,7 +7,9 @@ import com.nexta1.common.utils.ServletHolderUtil;
 import com.nexta1.common.utils.ip.IpRegionUtil;
 import com.nexta1.orm.common.enums.LoginStatusEnum;
 import com.nexta1.orm.system.entity.SysLoginInfoEntity;
+import com.nexta1.orm.system.entity.SysOperationLogEntity;
 import com.nexta1.orm.system.service.ISysLoginInfoService;
+import com.nexta1.orm.system.service.ISysOperationLogService;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,12 +65,12 @@ public class AsyncTaskFactory {
      * @param operationLog 操作日志信息
      * @return 任务task
      */
-//    public static Runnable recordOperationLog(final SysOperationLogEntity operationLog) {
-//        return () -> {
-//            // 远程查询操作地点
-//            operationLog.setOperatorLocation(IpRegionUtil.getBriefLocationByIp(operationLog.getOperatorIp()));
-//            SpringUtil.getBean(ISysOperationLogService.class).save(operationLog);
-//        };
-//    }
+    public static Runnable recordOperationLog(final SysOperationLogEntity operationLog) {
+        return () -> {
+            // 远程查询操作地点
+            operationLog.setOperatorLocation(IpRegionUtil.getBriefLocationByIp(operationLog.getOperatorIp()));
+            SpringUtil.getBean(ISysOperationLogService.class).save(operationLog);
+        };
+    }
 
 }

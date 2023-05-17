@@ -13,7 +13,7 @@
     <artifactId>nexta1-core</artifactId>
 
     <description>
-        infrastructure框架核心
+        core框架核心
     </description>
 
     <dependencies>

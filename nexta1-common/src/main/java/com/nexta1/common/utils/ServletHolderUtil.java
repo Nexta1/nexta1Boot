@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 客户端工具类
+ * Description:
+ * 工具类，封装了基本的Http操作。可以对一些操作进行扩展，例如获取请求的URL
  *
- * @author ruoyi
+ * @author nexta1
+ * @date 2023/5/15 21:30
  */
 public class ServletHolderUtil {
 

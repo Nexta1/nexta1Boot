@@ -12,9 +12,11 @@ import lombok.EqualsAndHashCode;
 import java.util.Date;
 
 /**
- * Entity基类
+ * Description:
+ * Entity继承Model
  *
- * @author valarchie
+ * @author nexta1
+ * @date 2023/5/16 22:02
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
